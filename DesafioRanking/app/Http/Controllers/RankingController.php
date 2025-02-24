@@ -25,11 +25,12 @@ class RankingController extends Controller
 
             if(empty($listaRanking))
                 throw new Exception("Lista vazia");
-            
+
             $separadoPorData = [];
             foreach($listaRanking as $ranking)
             {
-                $separadoPorData[$ranking->date][] = $ranking;
+               
+                $separadoPorData[date('Y-m-d', strtotime($ranking->date))][] = $ranking;
             }
 
             $rankingFinal = [];
