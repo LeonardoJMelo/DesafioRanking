@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\TesteLeo;
+use App\Models\Model;
 use Exception;
 
 class RepositoryBase
