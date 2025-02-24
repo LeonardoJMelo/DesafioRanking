@@ -29,7 +29,6 @@ class PersonalRecordController extends Controller
         }
         catch(Exception $e)
         {
-            var_dump($e->getMessage());exit;
             return ResponseUtils::responseBadRequest([], $e->getMessage());
         }
     }

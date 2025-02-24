@@ -23,13 +23,17 @@ class MovementController extends Controller
             if(!(int)count($parametros))
                 throw new Exception("Objeto invalido");
 
+            $filtro = $this->userRepository->filter(['name'=>$parametros['name']]);
+
+            if((int)count($filtro))
+                throw new Exception("Name ja existente");
+
             $retorno = $this->movementRepository->insert($parametros);
 
             return ResponseUtils::responseCreated($retorno);
         }
         catch(Exception $e)
         {
-            var_dump($e->getMessage());exit;
             return ResponseUtils::responseBadRequest([], $e->getMessage());
         }
     }
@@ -92,7 +96,7 @@ class MovementController extends Controller
             $retorno = $this->movementRepository->buscarTodos();
 
             if(empty($retorno))
-                throw new Exception("sem registros");
+                throw new Exception("Sem registros");
 
             return ResponseUtils::responseOK([$retorno]);
         }

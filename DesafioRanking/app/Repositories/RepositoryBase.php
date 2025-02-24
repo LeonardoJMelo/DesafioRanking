@@ -76,4 +76,22 @@ class RepositoryBase
             throw new Exception("Erro ao excluir registro. " . (!empty($e->getMessage()) ? $e->getMessage() : ""));
         }
     }
+
+    public function filter(array $filtros){
+        try
+        {
+            $modelRef = $this->model;
+
+            foreach($filtros as $key => $filtro)
+            {
+                $modelRef = $modelRef->where($key, $filtro);
+            }
+
+            return $modelRef->get();
+        }
+        catch(Exception $e)
+        {
+            throw new Exception("Erro ao excluir registro. " . (!empty($e->getMessage()) ? $e->getMessage() : ""));
+        }
+    }
 }

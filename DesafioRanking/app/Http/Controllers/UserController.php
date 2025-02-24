@@ -23,13 +23,17 @@ class UserController extends Controller
             if(!(int)count($parametros))
                 throw new Exception("Objeto invalido");
 
+            $filtro = $this->userRepository->filter(['name'=>$parametros['name']]);
+
+            if((int)count($filtro))
+                throw new Exception("Registro existente");
+
             $retorno = $this->userRepository->insert($parametros);
 
             return ResponseUtils::responseCreated($retorno);
         }
         catch(Exception $e)
         {
-            var_dump($e->getMessage());exit;
             return ResponseUtils::responseBadRequest([], $e->getMessage());
         }
     }
