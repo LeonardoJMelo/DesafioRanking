@@ -3,6 +3,7 @@
 Precisamos criar um banco de dados chamado BancoDesafio
 
 nesse banco precisamos criar o usuario e dar permissoes a ele, com o comando:
+
 CREATE USER 'root'@'%' IDENTIFIED BY '123456';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
